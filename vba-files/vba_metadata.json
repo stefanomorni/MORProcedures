@@ -1,0 +1,65 @@
+'@Folder("MORProcedures.Modules")
+{
+  "source_document": "D:\\Cloud\\Code\\VBA\\MORProcedures\\MORProcedures.xlam",
+  "export_date": "2026-02-22T13:58:13.618024",
+  "encoding_mode": "fixed",
+  "header_mode": "inline",
+  "encodings": {
+    "Sheet1": {
+      "encoding": null,
+      "type": "Document Module"
+    },
+    "ThisWorkbook": {
+      "encoding": null,
+      "type": "Document Module"
+    },
+    "Frm1Range": {
+      "encoding": null,
+      "type": "UserForm"
+    },
+    "Frm2Alternative": {
+      "encoding": null,
+      "type": "UserForm"
+    },
+    "FrmEtichette": {
+      "encoding": null,
+      "type": "UserForm"
+    },
+    "FrmFinestraInformativa": {
+      "encoding": null,
+      "type": "UserForm"
+    },
+    "AutoMacros": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "DDECalls": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "OnTimeProcedure": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "UserInteraction": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "Utilita": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "Visualizzazione": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "Windekis": {
+      "encoding": null,
+      "type": "Standard Module"
+    },
+    "Xdebug": {
+      "encoding": null,
+      "type": "Class Module"
+    }
+  }
+}
