@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.xlsm
 *.xlam
 *.xlsx
@@ -7,3 +8,11 @@ xvba_modules/
 vba_edit.log
 *.tmp
 ~$*
+=======
+node_modules/
+__pycache__/
+*.pyc
+.env
+dist/
+build/
+>>>>>>> 3ff8262 (initial commit: project files and documentation)
