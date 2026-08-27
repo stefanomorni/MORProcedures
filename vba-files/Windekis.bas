@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "Windekis"
+'@Folder("MORProcedures.Modules")
 Public Sub Importa_Linee_Windekis()
     Dim c As Integer
     Dim NoLinee As Integer
@@ -8,7 +8,7 @@ Public Sub Importa_Linee_Windekis()
     ' Richiedi no di linee
     'NoLinee = InputBox("Inserisci il numero di linee da importare (in alto a destra in Windekis)", "Numero Linee importazione")
     'Accoda i data alla tabella corrente
-    Set CellaAttiva = ActiveWorkbook.ActiveSheet.Rows(ActiveSheet.UsedRange.Rows.Count + 1).Cells(1, 1)
+    Set CellaAttiva = ActiveWorkbook.ActiveSheet.Rows(ActiveSheet.UsedRange.Rows.count + 1).Cells(1, 1)
 
     'Copia le righe 1 a 1
 

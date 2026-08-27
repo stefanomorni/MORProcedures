@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "Visualizzazione"
+'@Folder("MORProcedures.Modules")
 Option Explicit
 
 Sub Fissa_AreaVisualizzazione_Su_Selezione_Corrente()
@@ -20,7 +20,7 @@ Sub Fissa_AreaVisualizzazione_Su_Selezione_Corrente()
 
 End Sub
 
-Sub Zooma_Su_AreaVisualizzazione(ByVal Sh As Object)
+Sub Zooma_Su_AreaVisualizzazione(ByVal sh As Object)
 
     ' Aggiusta automaticamente lo Zoom in modo da visualizzare l'area
     ' [NomeFoglio]_AreaVisualizzazione sul foglio fornito come argomento. Tali nomi possono essere creati per tutti
@@ -63,10 +63,10 @@ fine_pvt:
     Application.ScreenUpdating = True
 End Sub
 
-Sub Incrementa_Spazio_Righe_Area(Area As Object, Punti As Integer)
+Sub Incrementa_Spazio_Righe_Area(area As Object, Punti As Integer)
     Dim Riga As Range
     Application.ScreenUpdating = False
-    For Each Riga In Area.Rows.EntireRow
+    For Each Riga In area.Rows.EntireRow
         If Riga.Hidden = False Then
             Riga.AutoFit
             Riga.RowHeight = Riga.RowHeight + Punti

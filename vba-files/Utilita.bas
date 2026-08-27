@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "Utilita"
+'@Folder("MORProcedures.Modules")
 'Declarations
 Option Explicit
 
@@ -7,7 +7,7 @@ Option Explicit
 Public EtichetteColonna, EtichetteRiga As Range
 Public Annullato As Boolean
 Dim Riga
-Dim Nascoste, x, Count, Lista, NoClienti As Integer
+Dim Nascoste, x, count, Lista, NoClienti As Integer
 Dim Percorso, NomeFile, TuttiIClienti, BaseEstrazione, Criteri, Posizione, CasellaChiave As String
 Dim TrovatoIn As Object
 
@@ -41,7 +41,7 @@ Public Sub AssegnaNomiDaValoriRiga(ByVal Foglio As String, ByVal Suffisso As Str
 
     MetodoCalcolo = Application.Calculation
     Application.Calculation = xlCalculationManual
-    For Contatore = 1 To Worksheets(Foglio).Rows(NoRigaOggetto).Cells.Count
+    For Contatore = 1 To Worksheets(Foglio).Rows(NoRigaOggetto).Cells.count
         Etichetta = Worksheets(Foglio).Cells(NoRigaEtichette, Contatore).Text
         On Error Resume Next
         ActiveWorkbook.names.Add Name:=stringasenzaspazi(Suffisso) & Etichetta, _

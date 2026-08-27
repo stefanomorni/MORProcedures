@@ -1,4 +1,3 @@
-'@Folder("MORProcedures.Classes")
 VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
@@ -49,7 +48,7 @@ Public errorTitle As String
 '*/
 Public vbaDebugPrintActive As Boolean
 
-Private Sub class_initialize()
+Private Sub Class_Initialize()
 
      Dim fso  As Object
      Set fso = CreateObject("Scripting.FileSystemObject")

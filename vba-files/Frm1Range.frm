@@ -1,11 +1,10 @@
-'@Folder("MORProcedures.Forms")
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} Frm1Range 
    Caption         =   "Titolo"
    ClientHeight    =   2070
-   ClientLeft      =   30
-   ClientTop       =   330
-   ClientWidth     =   5670
+   ClientLeft      =   36
+   ClientTop       =   336
+   ClientWidth     =   5664
    OleObjectBlob   =   "Frm1Range.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -18,9 +17,9 @@ Public Riferimento As String
 
 'API function to enable/disable the Excel Window
 Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As LongPtr
-Private Declare PtrSafe Function EnableWindow Lib "user32" (ByVal hWnd As Long, ByVal bEnable As Long) As LongPtr
+Private Declare PtrSafe Function EnableWindow Lib "user32" (ByVal hWnd As LongPtr, ByVal bEnable As Long) As Long
 
-Dim mlHWnd As Long, mbModal As Boolean, mbDragDrop As Boolean
+Dim mlHWnd As LongPtr, mbModal As Boolean, mbDragDrop As Boolean
 
 Private Sub UserForm_Activate()
 
@@ -30,7 +29,7 @@ Private Sub UserForm_Activate()
     mlHWnd = FindWindowA("XLMAIN", Application.Caption)
     mbDragDrop = Application.CellDragAndDrop     'Memorize the current state
 
-    If CbxModeless.Value Then
+    If CbxModeless.value Then
         EnableWindow mlHWnd, 1                   'Enable the Window - makes the userform modeless
         'Disable Cell drag/drop, as it causes Excel 97 to GPF
         Application.CellDragAndDrop = False
@@ -50,3 +49,5 @@ Private Sub CbAnnulla_Click()
     Set RisultatoFinestra = Nothing
     Unload Frm1Range
 End Sub
+
+

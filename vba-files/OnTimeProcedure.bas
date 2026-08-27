@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "OnTimeProcedure"
+'@Folder("MORProcedures.Modules")
 Option Explicit
 
 Public Sub EseguiOgniXSecondi(Optional Libro As Workbook, Optional procedure As String, Optional SecondsFrequency As Single)

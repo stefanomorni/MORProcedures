@@ -4,3 +4,9 @@ __pycache__/
 .env
 dist/
 build/
+
+# Binary workbooks & add-ins
+*.xlam
+*.xlsm
+*.xlsx
+*.xls

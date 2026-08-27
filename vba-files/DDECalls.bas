@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "DDECalls"
+'@Folder("MORProcedures.Modules")
 Option Explicit
 Option Base 1
 

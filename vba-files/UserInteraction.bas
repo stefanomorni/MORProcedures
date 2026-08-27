@@ -1,5 +1,5 @@
-'@Folder("MORProcedures.Modules")
 Attribute VB_Name = "UserInteraction"
+'@Folder("MORProcedures.Modules")
 Option Explicit
 Public RisultatoFinestra                         'Valore restituito dalla finestra
 
@@ -29,11 +29,11 @@ End Sub
 Sub FinestraInformativa(Titolo As String, Messaggio As String, Modeless As Boolean)
     With FrmFinestraInformativa
         .Caption = Titolo
-        .Messaggio.Value = Messaggio
+        .Messaggio.value = Messaggio
         If Modeless Then
-            .CbxModeless.Value = True
+            .CbxModeless.value = True
         Else
-            .CbxModeless.Value = False
+            .CbxModeless.value = False
         End If
         .Show
     End With
@@ -44,13 +44,13 @@ Sub Finestra2Alternative(Titolo As String, Messaggio As String, Modeless As Bool
 
     With Frm2Alternative
         .Caption = Titolo
-        .Messaggio.Value = Messaggio
+        .Messaggio.value = Messaggio
         .CmdAlternativa1.Caption = CaptionAlternativa_1
         .CmdAlternativa2.Caption = CaptionAlternativa_2
         If Modeless Then
-            .CbxModeless.Value = True
+            .CbxModeless.value = True
         Else
-            .CbxModeless.Value = False
+            .CbxModeless.value = False
         End If
         .Show
     End With
@@ -63,9 +63,9 @@ Sub Finestra1Range(Titolo As String, Messaggio As String, Modeless As Boolean)
         .MessaggioRange = Messaggio
         .Riferimento = Selection.AddressLocal
         If Modeless Then
-            .CbxModeless.Value = True
+            .CbxModeless.value = True
         Else
-            .CbxModeless.Value = False
+            .CbxModeless.value = False
         End If
         .Show
     End With
