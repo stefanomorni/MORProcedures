@@ -1,6 +1,6 @@
 Attribute VB_Name = "Menus"
-Sub AggiungiComandoAMenu(Foglio As Object, Oggetto As String, Descrizione As String, PrimaDiMenu As Integer, MacroCodeName As String)
-    'oggetto puo essere p.es. 'List Range Popup' per le ceeel di una tabella o "Cell" per le celle furi da una tabella
+Sub AggiungiComandoAMenu(Foglio As Object, Oggetto As String, Descrizione As String, PrimaDiMenu As Integer, MacroCodeName As String, Optional ByVal FaceId As Long = 0, Optional ByVal BeginGroup As Boolean = False)
+    'oggetto puo essere p.es. 'List Range Popup' per le celle di una tabella o "Cell" per le celle fuori da una tabella
 
     Dim cmdBtn As CommandBarButton
     On Error Resume Next
@@ -11,7 +11,15 @@ Sub AggiungiComandoAMenu(Foglio As Object, Oggetto As String, Descrizione As Str
 
     With cmdBtn
         .Caption = Descrizione
-        .Style = msoButtonCaption
+        If FaceId > 0 Then
+            .Style = msoButtonIconAndCaption
+            .FaceId = FaceId
+        Else
+            .Style = msoButtonCaption
+        End If
+        If BeginGroup Then
+            .BeginGroup = True
+        End If
         .OnAction = CodeName & MacroCodeName
     End With
     On Error GoTo 0
