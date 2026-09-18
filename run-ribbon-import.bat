@@ -1,6 +1,9 @@
 @echo off
-set "PY_EXEC=%OFFICE_PYTHON_ENV%"
-if "%PY_EXEC%"=="" set "PY_EXEC=C:\Users\Stefano\miniforge3\envs\xlpy\python.exe"
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\Resolve-OfficePython.ps1" -ProjectRoot "%~dp0."`) do set "PY_EXEC=%%i"
+if not defined PY_EXEC (
+  echo [XX] Could not resolve Office Python via Resolve-OfficePython.ps1
+  exit /b 1
+)
 
 if "%1"=="" (start "" "%~f0" run & exit)
 :run

@@ -5,12 +5,12 @@
         <group id="grpDataMasking" label="Data Privacy &amp; Masking">
           <button id="btnMaskSelection"
                   label="Scramble Selection (Ctrl+Shift+M)"
-                  imageMso="Lock"
+                  image="lock"
                   size="large"
                   onAction="OnRibbonMaskClick"/>
           <button id="btnUnmaskSelection"
                   label="Restore Selection (Ctrl+Shift+U)"
-                  imageMso="Unlock"
+                  image="unlock"
                   size="large"
                   onAction="OnRibbonUnmaskClick"/>
         </group>
