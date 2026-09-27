@@ -76,7 +76,7 @@ Sub CreaMenuInStrumenti(Descrizione, Macro As String)
     
     '   If an error occured, tell the user
     If Err <> 0 Then
-        MsgBox "Si è verificato un errore nella procedura CreaMenuInStrumenti", vbInformation
+        MsgBox "Si Ã¨ verificato un errore nella procedura CreaMenuInStrumenti", vbInformation
     End If
 End Sub
 
@@ -99,4 +99,5 @@ Sub EliminaMenuInStrumenti(Descrizione)
     Application.CommandBars(XLCommandBar).Controls(XLMenu).Controls(XLMenuItem).Controls(NewMenuItem).Delete
     Application.CommandBars(XLCommandBar).Controls(XLMenu).Controls(NewMenuItem).Delete
 End Sub
+
 
