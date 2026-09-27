@@ -27,6 +27,11 @@ _stage_*.xlam
 # Python cache
 __pycache__/
 *.py[cod]
+node_modules/
+
+# Secrets — never commit vault keys or credentials
+.env
+.secrets
 
 # OS / editor artefacts
 .DS_Store
