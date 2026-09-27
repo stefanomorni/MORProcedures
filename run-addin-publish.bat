@@ -23,37 +23,14 @@ if errorlevel 1 (
 )
 echo.
 echo [2/3] Saving dev workbook as staged add-in ...
-"%PY_EXEC%" -c "
-import win32com.client as win32, os, shutil, pathlib
-xl = win32.GetActiveObject('Excel.Application')
-wb = None
-for w in xl.Workbooks:
-    if w.Name.lower() == 'morprocedures-dev.xlsm':
-        wb = w
-        break
-if wb is None:
-    print('ERROR: MORProcedures-dev.xlsm not found in Excel. Open it first.')
-    exit(1)
-stage = str(pathlib.Path(r'%~dp0') / '_stage_MORProcedures.xlam')
-xl.DisplayAlerts = False
-wb.SaveAs(stage, FileFormat=55)  # 55 = xlAddIn
-xl.DisplayAlerts = True
-print(f'Staged: {stage}')
-"
+"%PY_EXEC%" scripts\publish_addin.py stage "MORProcedures-dev.xlsm" "_stage_MORProcedures.xlam"
 if errorlevel 1 (
     echo [ERROR] SaveAs xlAddIn failed. Aborting publish.
     pause & exit /b 1
 )
 echo.
 echo [3/3] Copying staged add-in to canonical location ...
-"%PY_EXEC%" -c "
-import shutil, pathlib
-stage  = pathlib.Path(r'%~dp0_stage_MORProcedures.xlam')
-target = pathlib.Path(r'%~dp0MORProcedures.xlam').resolve()
-shutil.copy2(str(stage), str(target))
-stage.unlink()
-print(f'Published: {target}')
-"
+"%PY_EXEC%" scripts\publish_addin.py publish "_stage_MORProcedures.xlam" "MORProcedures.xlam"
 if errorlevel 1 (
     echo [ERROR] Copy to canonical .xlam failed.
     pause & exit /b 1

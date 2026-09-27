@@ -25,7 +25,7 @@ If FormatAsTable Then
         ActiveSheet.ListObjects("ArrayTable").Name = RangeName
     End If
 ElseIf RangeName <> "" Then
-    ActiveWorkbook.names.Add RangeName, Destination
+    ActiveWorkbook.Names.Add RangeName, Destination
 End If
 End Sub
 
@@ -43,9 +43,9 @@ End Sub
 Public Sub Cancella_Tutti_I_Nomi_Del_Worbook()
 
     Dim NoNomi, Contatore As Integer
-    NoNomi = ActiveWorkbook.names.count
+    NoNomi = ActiveWorkbook.Names.count
     For Contatore = NoNomi To 1 Step -1
-        ActiveWorkbook.names(Contatore).Delete
+        ActiveWorkbook.Names(Contatore).Delete
     Next Contatore
 
 End Sub
@@ -70,7 +70,7 @@ Public Sub Define_UsedRange()
 
     With ActiveWorkbook
         For Each Foglio In .Worksheets
-            ActiveWorkbook.names.Add Name:="UsedRange", RefersToR1C1:= _
+            ActiveWorkbook.Names.Add Name:="UsedRange", RefersToR1C1:= _
                                      Foglio.UsedRange
         Next Foglio
     End With

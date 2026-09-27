@@ -1,12 +1,34 @@
-node_modules/
-__pycache__/
-*.pyc
-.env
-dist/
-build/
+# ============================================================
+# MORProcedures — .gitignore
+# Text sources only: vba-files/, ribbon/, scripts/, launchers.
+# Binary add-ins and diagnostics never enter version control.
+# ============================================================
 
-# Binary workbooks & add-ins
+# Office binaries (add-in + dev workbook are gitignored by design)
 *.xlam
 *.xlsm
 *.xlsx
+*.xlsb
 *.xls
+*.xla
+
+# Publish-out pipeline staging artefact
+_stage_*.xlam
+
+# Temporary & lock files
+~$*
+*.tmp
+*.bak
+
+# VBA export diagnostics (xvba export logs)
+*.log
+*_temp.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# OS / editor artefacts
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -7,7 +7,7 @@ if not defined PY_EXEC (
 
 if "%1"=="" (start /min "" "%~f0" run & exit)
 :run
-title VBA-Watcher ? MORProcedures-dev
+title VBA-Watcher - MORProcedures-dev
 cd /d "%~dp0"
 echo ============================================================
 echo  VBA Watcher: MORProcedures-dev.xlsm ^<^> vba-files\

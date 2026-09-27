@@ -72,26 +72,59 @@ Sub Finestra1Range(Titolo As String, Messaggio As String, Modeless As Boolean)
 End Sub
 
 Sub Highlight_Selected_Tabe_Row(Table As Object, Selezione As Object)
-    Dim RelevantRow As Range
+    ' Ignore whole-row or large multi-cell selections (e.g. during row deletion)
+    If Selezione Is Nothing Or Table Is Nothing Then Exit Sub
+    If Selezione.Cells.CountLarge > 50 Then Exit Sub
 
-    On Error GoTo fine
-    Application.ScreenUpdating = False
-    If Not IsError(Intersect(Selezione, Table.DataBodyRange)) Then          ' in case is a selection in table
-        'Restore previous pattern/ color formating
-        With Table.DataBodyRange.Interior ' XXX
-            .Pattern = xlNone
-        End With
-        'highlight with pale yellow
+    On Error GoTo CleanExit
 
-        With Application.Intersect(Selezione.EntireRow, Table.DataBodyRange).Interior
+    Dim ws As Worksheet
+    Set ws = Table.Parent
+
+    ' Only run when the selection intersects the table body
+    If Intersect(Selezione, Table.DataBodyRange) Is Nothing Then Exit Sub
+
+    ' 1. Self-healing check: ensure the sheet-scoped ActiveTableRow name exists
+    Dim n As Name
+    On Error Resume Next
+    Set n = ws.Names("ActiveTableRow")
+    On Error GoTo CleanExit
+
+    If n Is Nothing Then
+        ws.Names.Add Name:="ActiveTableRow", RefersTo:="=" & Selezione.Row
+        EnsureTableRowHighlightRule Table
+    Else
+        ' 2. Ultra-fast update: updates native crosshair in 0ms without touching cells
+        n.RefersTo = "=" & Selezione.Row
+    End If
+
+CleanExit:
+    On Error GoTo 0
+End Sub
+
+Private Sub EnsureTableRowHighlightRule(Table As Object)
+    On Error Resume Next
+    Dim tblRange As Range
+    Set tblRange = Table.DataBodyRange
+    If tblRange Is Nothing Then Exit Sub
+
+    ' Check if rule already exists to avoid duplication
+    Dim i As Long, hasRule As Boolean
+    For i = 1 To tblRange.FormatConditions.count
+        If InStr(1, tblRange.FormatConditions(i).Formula1, "ActiveTableRow", vbTextCompare) > 0 Then
+            hasRule = True
+            Exit For
+        End If
+    Next i
+
+    ' If missing, add the native conditional formatting rule
+    If Not hasRule Then
+        Dim fc As FormatCondition
+        Set fc = tblRange.FormatConditions.Add(Type:=xlExpression, Formula1:="=ROW()=ActiveTableRow")
+        With fc.Interior
+            .Color = 10092543 ' Pale yellow
             .Pattern = xlSolid
-            '.PatternColorIndex = xlAutomatic
-            .Color = 10092543
-            .TintAndShade = 0
-            .PatternTintAndShade = 0
         End With
     End If
-fine:
-On Error GoTo 0
-Application.ScreenUpdating = True
+    On Error GoTo 0
 End Sub

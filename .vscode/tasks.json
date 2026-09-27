@@ -1,0 +1,79 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "VBA: Sync & Watch (dev xlsm)",
+      "type": "shell",
+      "command": "C:\\Users\\Stefano\\miniforge3\\envs\\xlpy\\python.exe",
+      "args": [
+        "${workspaceFolder}\\scripts\\vba_sync_watch.py",
+        "MORProcedures-dev.xlsm",
+        "--vba-dir", "vba-files"
+      ],
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "PQ: Watch & Auto-sync (inert for add-ins)",
+      "type": "shell",
+      "command": "C:\\Users\\Stefano\\miniforge3\\envs\\xlpy\\python.exe",
+      "args": [
+        "${workspaceFolder}\\scripts\\pq_sync_watch.py",
+        "MORProcedures-dev.xlsm",
+        "--pq-dir", "power-queries",
+        "--sync-script", "${workspaceFolder}\\scripts\\pq_sync.py"
+      ],
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "VBA: Force Export All (dev xlsm -> vba-files)",
+      "type": "shell",
+      "command": "C:\\Users\\Stefano\\miniforge3\\envs\\xlpy\\python.exe",
+      "args": [
+        "${workspaceFolder}\\scripts\\vba_sync_watch.py",
+        "export-all",
+        "MORProcedures-dev.xlsm",
+        "--vba-dir", "vba-files"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Ribbon: Export (dev xlsm -> ribbon/)",
+      "type": "shell",
+      "command": "C:\\Users\\Stefano\\miniforge3\\envs\\xlpy\\python.exe",
+      "args": [
+        "${workspaceFolder}\\scripts\\ribbon_sync.py",
+        "export",
+        "MORProcedures-dev.xlsm",
+        "--output-dir", "ribbon"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Ribbon: Import (ribbon/ -> dev xlsm)",
+      "type": "shell",
+      "command": "C:\\Users\\Stefano\\miniforge3\\envs\\xlpy\\python.exe",
+      "args": [
+        "${workspaceFolder}\\scripts\\ribbon_sync.py",
+        "import",
+        "MORProcedures-dev.xlsm",
+        "--input-dir", "ribbon"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Add-In: Publish (dev xlsm -> canonical xlam)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\run-addin-publish.bat",
+      "args": ["run"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}

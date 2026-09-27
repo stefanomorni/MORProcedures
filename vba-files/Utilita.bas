@@ -44,7 +44,7 @@ Public Sub AssegnaNomiDaValoriRiga(ByVal Foglio As String, ByVal Suffisso As Str
     For Contatore = 1 To Worksheets(Foglio).Rows(NoRigaOggetto).Cells.count
         Etichetta = Worksheets(Foglio).Cells(NoRigaEtichette, Contatore).Text
         On Error Resume Next
-        ActiveWorkbook.names.Add Name:=stringasenzaspazi(Suffisso) & Etichetta, _
+        ActiveWorkbook.Names.Add Name:=stringasenzaspazi(Suffisso) & Etichetta, _
                                                                    RefersTo:=Worksheets(Foglio).Cells(NoRigaOggetto, Contatore), Visible:=True
     Next Contatore
     Application.Calculation = MetodoCalcolo
@@ -59,6 +59,6 @@ End Sub
 Public Sub Estrai_Nomi_Workbook(Libro As Workbook)
     Dim Nomi As Collection
     Dim Indirizzi As Collection
-    Nomi = Libro.names.Item.Name
-    Indirizzi = Libro.names.Item.RefersToRange
+    Nomi = Libro.Names.Item.Name
+    Indirizzi = Libro.Names.Item.RefersToRange
 End Sub

@@ -34,7 +34,7 @@ Private Sub CbOk_Click()
                     NomeCella = stringasenzaspazi(EtichetteColonna.Cells(Colonna).value) & "_" & _
                                                                                          stringasenzaspazi(EtichetteRiga.Cells(Riga).value)
                     Set CellaElaborata = EtichetteColonna.Cells(Colonna).Offset(Riga + Distanza, 0)
-                    ActiveWorkbook.names.Add Name:=NomeCella, RefersTo:=CellaElaborata
+                    ActiveWorkbook.Names.Add Name:=NomeCella, RefersTo:=CellaElaborata
                     On Error GoTo 0
                 End If
             End If

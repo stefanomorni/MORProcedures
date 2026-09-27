@@ -14,7 +14,7 @@ Sub Fissa_AreaVisualizzazione_Su_Selezione_Corrente()
 
     For Each Foglio In ActiveWorkbook.Worksheets
         Foglio.Activate
-        ActiveWorkbook.names.Add Name:=ActiveSheet.Name & "_AreaVisualizzazione", _
+        ActiveWorkbook.Names.Add Name:=ActiveSheet.Name & "_AreaVisualizzazione", _
                                  RefersTo:=Selection
     Next Foglio
 

@@ -1,72 +1,42 @@
 # Session Context: MORProcedures
 
-- **Date**: 2026-08-30
+- **Date**: 2026-09-27
 - **Branch**: `main`
-- **State**: Scripts scaffolded, publish-out pipeline in place
+- **State**: Development re-initiated — framework alignment + toolchain repairs verified
 
-## What This Project Is
+> This is a **short delta pointer**, not a handoff packet. Read in this order:
+> 1. `PROJECT_HANDBOOK.md` — durable intent, constraints, architecture, decision log
+> 2. `PROJECT_PROGRESS.md` — full lossless resume packet for the last session
+> 3. This file — only what changed *since* that packet
 
-`MORProcedures.xlam` is a **universal Excel add-in** loaded in every Excel session. It hosts:
-- **Mask/Unmask ribbon** — available in all open workbooks (`customUI14.xml`)
-- **Shared VBA utilities** — `DataMasker.cls`, `RibbonCallbacks.bas`, and supporting modules
+## Orientation
 
-## Architecture
+`MORProcedures.xlam` is a **universal Excel add-in** loaded in every Excel session: the
+**MOR Procedures** ribbon tab (scramble / restore selection, deterministic `CLI-XXXX`
+pseudonyms), plus a legacy shared-helper library.
 
-- **Canonical add-in**: `MORProcedures.xlam` — symlink → `D:\Cloud\OneDrive\...\MORProcedures.xlam`
-- **Dev workbook**: `MORProcedures-dev.xlsm` — visible `.xlsm` used for active development (does NOT exist yet — create via Save As from the add-in or start fresh)
-- **Scripts**: symlinks → `Office-Automation-Framework\scripts\` (single-writer SSoT)
-- **Launchers**: 8 `.bat` files at project root — all target `MORProcedures-dev.xlsm`
+- **Canonical add-in**: `MORProcedures.xlam` — gitignored binary, registered with Excel.
+- **Dev workbook**: `MORProcedures-dev.xlsm` — **now exists**; all launchers target it.
+- **Scripts**: `scripts\` are NTFS symlinks → `Office-Automation-Framework\scripts\` (SSoT).
+- **Launchers**: **9** `.bat` files at project root (8 targeted at the dev `.xlsm`;
+  `run-addin-publish.bat` produces the add-in).
 
-> **Single-writer rule**: all script edits go to `Office-Automation-Framework/scripts/` only.
-> Child `scripts/` entries are Windows symlinks to the SSoT. See `Office-Automation-Framework/docs/SINGLE-WRITER-RULE.md`.
+## Workflow law (unchanged, non-negotiable)
 
-## Add-In Exception — Publish-Out Pipeline
+Never run the live watcher against the `.xlam` — a loaded add-in has `IsAddin = True` and
+locks its VBA project. Develop in `MORProcedures-dev.xlsm` with `run-vba-watcher.bat`;
+publish with `run-addin-publish.bat`. See `PROJECT_HANDBOOK.md` §3.
 
-**Never run `run-vba-watcher.bat` or import into `MORProcedures.xlam` directly.**
-The loaded add-in has `IsAddin=True` — VBA project is locked. Direct import causes corruption.
+## Delta since the last session packet
 
-### Development workflow
-1. Open `MORProcedures-dev.xlsm` in Excel (visible workbook)
-2. Run `run-vba-watcher.bat` — live bidirectional sync with `vba-files\`
-3. Edit VBA freely; watcher syncs to disk automatically
-4. When ready to ship: run `run-addin-publish.bat`
-   - Exports current VBA state → `vba-files\`
-   - SaveAs `xlAddIn` to `_stage_MORProcedures.xlam`
-   - Copies stage → `MORProcedures.xlam` (canonical)
-   - Reload add-in in Excel if already loaded
+Nothing yet — this file was rewritten on 2026-09-27 to remove stale claims
+(it previously asserted `RibbonCallbacks.bas` existed on disk before it did, quoted both
+"8" and "9" launcher counts, described a `vba_manifest.json` mechanism that never existed,
+and said the dev workbook did not exist).
 
-### Creating MORProcedures-dev.xlsm (first time)
-**Option A — In Excel VBA Editor (Fastest):**
-1. Open Excel (so `MORProcedures.xlam` is loaded).
-2. Press `Alt + F11` to open the VBA Editor.
-3. In the Project Explorer, select `ThisWorkbook` under `MORProcedures`.
-4. In the Properties window (`F4`), change `IsAddin` from `True` to `False` (the workbook immediately unhides in Excel).
-5. Back in Excel, File → Save As → `MORProcedures-dev.xlsm` (Excel Macro-Enabled Workbook, `*.xlsm`) in `D:\Cloud\Coding\Projects\MORProcedures\`.
-6. In VBA Editor, set `IsAddin` back to `True` on the `.xlam` (or simply close Excel without saving changes to the original `.xlam`).
-7. Run `run-vba-export.bat` to verify disk sync against `MORProcedures-dev.xlsm`.
+## Next action
 
-**Option B — Via Excel Add-Ins Manager:**
-1. File → Options → Add-ins → Manage: Excel Add-ins → Go... → Uncheck `MORProcedures`.
-2. Open `MORProcedures.xlam` directly, open VBA editor (`Alt + F11`), set `IsAddin = False`.
-3. File → Save As → `MORProcedures-dev.xlsm`.
-4. Close and re-check the add-in under Excel Add-Ins.
-
-## Launchers
-
-| File | Purpose |
-|---|---|
-| `run-vba-export.bat` | Export VBA from dev `.xlsm` → `vba-files\` |
-| `run-vba-import.bat` | Import `vba-files\` → dev `.xlsm` |
-| `run-vba-watcher.bat` | Live bidirectional watcher (dev `.xlsm` only) |
-| `run-pq-export.bat` | Provisioned; add-ins have no PQ — inert |
-| `run-pq-import.bat` | Provisioned; add-ins have no PQ — inert |
-| `run-pq-watcher.bat` | Provisioned; add-ins have no PQ — inert |
-| `run-ribbon-export.bat` | Export ribbon XML from dev `.xlsm` → `ribbon\` |
-| `run-ribbon-import.bat` | Import `ribbon\customUI14.xml` → dev `.xlsm` |
-| `run-addin-publish.bat` | **Publish pipeline**: dev `.xlsm` → staged → `MORProcedures.xlam` |
-
-## Accomplishments — 2026-08-30
-1. Git divergence resolved (`DataMasker.cls` preserved, rebased onto origin)
-2. `scripts\` folder created with 5 symlinks → OAF SSoT
-3. Full launcher suite (9 `.bat` files) written including `run-addin-publish.bat`
-4. `SESSION_CONTEXT.md` created with full architecture + publish-out workflow docs
+Confirm in Excel (dev workbook open): ribbon **MOR Procedures** tab → *Scramble Selection*
+→ values become `CLI-XXXX`; *Restore Selection* reverts; `Ctrl+Shift+M` / `Ctrl+Shift+U`
+do the same. Then republish the canonical `.xlam` when an interactive Excel session is
+available.

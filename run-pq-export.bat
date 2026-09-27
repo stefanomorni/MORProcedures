@@ -11,7 +11,7 @@ title PQ: Force Export (Dev XLSM -> power-queries)
 cd /d "%~dp0"
 echo ============================================================
 echo  Force Export: Queries ^> power-queries\
-echo  (Add-ins do not use PQ ? this launcher is provisioned for
+echo  (Add-ins do not use PQ - this launcher is provisioned for
 echo   uniformity but will find no queries to export)
 echo ============================================================
 echo.

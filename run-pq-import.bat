@@ -11,7 +11,7 @@ title PQ: Force Import (power-queries -> Dev XLSM)
 cd /d "%~dp0"
 echo ============================================================
 echo  Force Import: power-queries\ ^> Queries
-echo  (Add-ins do not use PQ ? this launcher is provisioned for
+echo  (Add-ins do not use PQ - this launcher is provisioned for
 echo   uniformity but will find no queries to import)
 echo ============================================================
 echo.

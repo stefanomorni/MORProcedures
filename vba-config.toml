@@ -1,6 +1,7 @@
 [general]
 # Smart pathing using placeholders
-file = "{config.path}/MORProcedures.xlam"
+# `file` targets the DEV workbook (publish-out pipeline), never the locked .xlam.
+file = "{config.path}/MORProcedures-dev.xlsm"
 vba_directory = "{config.path}/vba-files"
 verbose = true
 rubberduck_folders = true
