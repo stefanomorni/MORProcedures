@@ -85,6 +85,7 @@ source_code:
 | 2026-09-27 | `vba_sync_watch.py` decodes UTF-8 then cp1252 | cp1252-safe modules crashed Safe-Sync, and the `Import` fallback spawned duplicate modules | Yes |
 | 2026-09-27 | Duplicate-safe fallback: never `Import` an already-existing component | Prevents `Menus1`-style duplicates | Yes |
 | 2026-09-27 | Disk `vba-files\` reconciled to the add-in + disk-ahead modules imported back | `.xlam` held newer `AutoMacros`/`UserInteraction`; disk held newer `Menus`; two modules were empty on disk | Yes |
+| 2026-09-27 | Robust self-healing table row highlighting in `UserInteraction.bas` | Fix silent false-positive in FormatConditions loop when UniqueValues/IconSet rules exist; auto-adapt AppliesTo on table row resize; native Target.ListObject resolution | Yes |
 
 ## 6. Open questions & risks
 

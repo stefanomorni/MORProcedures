@@ -29,14 +29,14 @@ publish with `run-addin-publish.bat`. See `PROJECT_HANDBOOK.md` §3.
 
 ## Delta since the last session packet
 
-Nothing yet — this file was rewritten on 2026-09-27 to remove stale claims
-(it previously asserted `RibbonCallbacks.bas` existed on disk before it did, quoted both
-"8" and "9" launcher counts, described a `vba_manifest.json` mechanism that never existed,
-and said the dev workbook did not exist).
+- **Row highlighting rewritten and published**: `UserInteraction.bas` now implements a robust, self-healing, and self-contained table row highlighter using native Conditional Formatting.
+  - Safe inspection of FormatConditions (fixed crash/silent false-positive when `UniqueValues` or `IconSet` rules are present on the table).
+  - Self-healing: automatically calls `fc.ModifyAppliesToRange` when rows are added or deleted in the table.
+  - Portable 1-line calling signature: `MORProcedures.Highlight_Selected_Table_Row Target` (no `Table` object or `MORFunctions` dependency needed).
+  - Preserved backward compatibility: alias `Highlight_Selected_Tabe_Row` still accepts legacy 2-argument calls.
+  - Published to canonical `MORProcedures.xlam` and verified working in `_Registro.xlsm` and `PMS 3.2`.
 
 ## Next action
 
-Confirm in Excel (dev workbook open): ribbon **MOR Procedures** tab → *Scramble Selection*
-→ values become `CLI-XXXX`; *Restore Selection* reverts; `Ctrl+Shift+M` / `Ctrl+Shift+U`
-do the same. Then republish the canonical `.xlam` when an interactive Excel session is
-available.
+- Feature work or testing in daily Excel workflow.
+- Clean and commit sibling projects (`Registro`, `PMS 3.2`).

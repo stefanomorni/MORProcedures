@@ -40,6 +40,14 @@ The `.xlam` and `vba-files\` had diverged in **both** directions — neither was
 
 **Result: 21/21 components at parity** (single residual difference is a trailing newline in `Menus.bas`).
 
+### 5. Table row highlighting rewritten (self-contained, robust, adapting)
+- Rewrote `Highlight_Selected_Table_Row` in `UserInteraction.bas` using native Conditional Formatting (`=ROW()=ActiveTableRow`).
+- Fixed silent false-positive bug where non-expression rules (`Type = xlUniqueValues`, `xlColorScale`, `xlIconSet`) threw runtime errors on `.Formula1`, prematurely setting `hasRule = True` and preventing rule creation.
+- Added adaptive rule sizing (`fc.ModifyAppliesToRange Table.DataBodyRange`) to automatically track table row additions, deletions, and prevent rule fragmentation.
+- Added automatic highlight deactivation (`ActiveTableRow = 0`) when selection leaves the table.
+- Added native single-parameter calling signature `Highlight_Selected_Table_Row Target` (no `Table` parameter or `MORFunctions` dependency needed) while preserving backward compatibility with legacy 2-argument calls (`Highlight_Selected_Tabe_Row Table, Target`).
+- Published to canonical `MORProcedures.xlam` and verified in `_Registro.xlsm` and `PMS 3.2`.
+
 ---
 
 ## Non-negotiables introduced/confirmed
