@@ -4,7 +4,7 @@ type: project_handbook
 handbook_maturity: deep
 habits: on
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-10-10
 source_code:
   - "%PROJECTS_ROOT%\\MORProcedures"
 ---
@@ -86,6 +86,7 @@ source_code:
 | 2026-09-27 | Duplicate-safe fallback: never `Import` an already-existing component | Prevents `Menus1`-style duplicates | Yes |
 | 2026-09-27 | Disk `vba-files\` reconciled to the add-in + disk-ahead modules imported back | `.xlam` held newer `AutoMacros`/`UserInteraction`; disk held newer `Menus`; two modules were empty on disk | Yes |
 | 2026-09-27 | Robust self-healing table row highlighting in `UserInteraction.bas` | Fix silent false-positive in FormatConditions loop when UniqueValues/IconSet rules exist; auto-adapt AppliesTo on table row resize; native Target.ListObject resolution | Yes |
+| 2026-10-10 | Consumes OAF `vba_compile_check.py` (symlink) as the compile gate before `run-addin-publish.bat` | Framework owns the add-in publish + compile harness; the child only runs it | Yes |
 
 ## 6. Open questions & risks
 
