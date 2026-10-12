@@ -56,9 +56,10 @@ Public Sub AssegnaNomiACellaTabellaDaEtichette()
     FrmEtichette.Show
 End Sub
 
-Public Sub Estrai_Nomi_Workbook(Libro As Workbook)
-    Dim Nomi As Collection
-    Dim Indirizzi As Collection
-    Nomi = Libro.Names.Item.Name
-    Indirizzi = Libro.Names.Item.RefersToRange
-End Sub
+' DEPRECATED — original code was broken (Names.Item requires an Index argument)
+'Public Sub Estrai_Nomi_Workbook(Libro As Workbook)
+'    Dim Nomi As Collection
+'    Dim Indirizzi As Collection
+'    Nomi = Libro.Names.Item.Name
+'    Indirizzi = Libro.Names.Item.RefersToRange
+'End Sub

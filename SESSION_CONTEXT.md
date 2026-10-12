@@ -1,8 +1,8 @@
 # Session Context: MORProcedures
 
-- **Date**: 2026-09-27
+- **Date**: 2026-10-12
 - **Branch**: `main`
-- **State**: Development re-initiated — framework alignment + toolchain repairs verified
+- **State**: Row highlighting StopIfTrue fix published to canonical .xlam
 
 > This is a **short delta pointer**, not a handoff packet. Read in this order:
 > 1. `PROJECT_HANDBOOK.md` — durable intent, constraints, architecture, decision log
@@ -34,7 +34,8 @@ publish with `run-addin-publish.bat`. See `PROJECT_HANDBOOK.md` §3.
   - Self-healing: automatically calls `fc.ModifyAppliesToRange` when rows are added or deleted in the table.
   - Portable 1-line calling signature: `MORProcedures.Highlight_Selected_Table_Row Target` (no `Table` object or `MORFunctions` dependency needed).
   - Preserved backward compatibility: alias `Highlight_Selected_Tabe_Row` still accepts legacy 2-argument calls.
-  - Published to canonical `MORProcedures.xlam` and verified working in `_Registro.xlsm` and `PMS 3.2`.
+  - **Fixed 2026-10-12**: Explicitly set `existingRule.StopIfTrue = False` in `EnsureTableHighlightRule` so row highlight conditional formatting never suppresses downstream column-level font rules (such as `HasLink` styling or icons).
+  - Published to canonical `MORProcedures.xlam` and verified working in `_Registro.xlsm`.
 
 ## Next action
 

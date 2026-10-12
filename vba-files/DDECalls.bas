@@ -3,54 +3,33 @@ Attribute VB_Name = "DDECalls"
 Option Explicit
 Option Base 1
 
-'Declarations
+' Bloomberg DDE/COM integration — DEPRECATED 2026-10.
+' Bloomberg terminal is no longer available on this workstation.
+' All subs are retained as no-op stubs to avoid breaking any
+' external callers that may still reference them.
 
-Dim CanaleBlg
-Dim CanaleFinXL
+Private Sub BloombergNotAvailable()
+    Err.Raise 5, "DDECalls", "Bloomberg is no longer installed on this workstation."
+End Sub
 
-Public Sub AggregaRichiestaBlg(OggettoBlp, SerieTicker, SerieCampi, Optional CampiOverride, Optional ValoriOverride, Optional NomeVarRisposta, Optional Monitor)
-
-    Dim OggettoBlp As BLP_DATA_CTRLLib.BlpData
-    Dim Ticker, Campo, NoTrasmissione As Long
-
-    OggettoBlp = New BlpData
-
-    OggettoBlp.AutoRelease = False
-    'Inizializza la serie di richieste dove 1 richiesta = 1Titolo,1 campo
-    For Ticker = 1 To UBound(SerieTitoli)
-        For Campo = 1 To UBound(SerieCampi)
-            NoTrasmissione = NoTrasmissione + 1
-            OggettoBlp.Subscribe SerieTitoli(Titolo), NoTrasmissione, SerieCampi(Campo), CampiOverride, ValoriOverride, NomeVarRisposta, Monitor
-        Next Campo
-    Next Ticker
-    'invia le richieste aggregate
-    OggettoBlp.Flush
+Public Sub AggregaRichiestaBlg(OggettoBlp As Variant, SerieTicker As Variant, SerieCampi As Variant, _
+        Optional CampiOverride As Variant, Optional ValoriOverride As Variant, _
+        Optional NomeVarRisposta As Variant, Optional Monitor As Variant)
+    BloombergNotAvailable
 End Sub
 
 Public Sub ApriCanaleBlg()
-        
-    CanaleBlg = Application.DDEInitiate(App:="WinBlp", topic:="BBK")
-
+    BloombergNotAvailable
 End Sub
 
 Public Sub ChiudiCanaleBlg()
-        
-    Application.DDETerminate CanaleBlg
-
+    BloombergNotAvailable
 End Sub
 
 Public Sub StringaABlg(Stringa As String)
- 
-    'presuppone l'apertura del canale tramite Call ApriCanaleBlg
-    Application.DDEExecute CanaleBlg, Stringa
-
+    BloombergNotAvailable
 End Sub
 
 Public Sub SalvaSchermoBlg(NomeFile As String)
-
-    StringaABlg ("<SAVE>")
-    DoEvents
-    Application.Wait (Now + TimeValue("0:00:03"))
-    SendKeys NomeFile
-    
+    BloombergNotAvailable
 End Sub

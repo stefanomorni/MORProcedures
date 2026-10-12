@@ -199,11 +199,13 @@ Private Sub EnsureTableHighlightRule(ByVal Table As ListObject)
             .Color = 10092543 ' Pale yellow
             .Pattern = 1      ' xlSolid
         End With
+        existingRule.StopIfTrue = False
     Else
         ' Self-healing: adapt rule range if rows were added/deleted or range fragmented
         If existingRule.AppliesTo.Address <> tblRange.Address Then
             existingRule.ModifyAppliesToRange tblRange
         End If
+        existingRule.StopIfTrue = False
     End If
     On Error GoTo 0
 End Sub

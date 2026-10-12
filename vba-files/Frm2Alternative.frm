@@ -15,10 +15,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 'API function to enable/disable the Excel Window
-'Private Declare Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
-'Private Declare Function EnableWindow Lib "user32" (ByVal hWnd As Long, ByVal bEnable As Long) As Long
+Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As LongPtr
+Private Declare PtrSafe Function EnableWindow Lib "user32" (ByVal hWnd As LongPtr, ByVal bEnable As Long) As Long
 
-Dim mlHWnd As Long, mbModal As Boolean, mbDragDrop As Boolean
+Dim mlHWnd As LongPtr, mbModal As Boolean, mbDragDrop As Boolean
 
 Private Sub UserForm_Activate()
 
